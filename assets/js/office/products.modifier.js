@@ -1,43 +1,43 @@
 $(document).ready(function() {
 
-  var isEdit = false;
+    var isEdit = false;
 
-  $('.alert').hide();
-  $('.alert').removeClass('d-none');
+    $('.alert').hide();
+    $('.alert').removeClass('d-none');
 
-  $('.category-edit').change(function() {
-    $('.save').removeAttr('disabled');
-    $('.cancel').removeAttr('disabled');
-    $('.delete-btn').removeAttr('disabled');
-  });
+    $('.category-edit').change(function() {
+        $('.save').removeAttr('disabled');
+        $('.cancel').removeAttr('disabled');
+        $('.delete-btn').removeAttr('disabled');
+    });
 
-  function format() {
-    $('input').val('');
-    $('.save').attr('disabled', true);
-    $('.cancel').attr('disabled', true);
-    $('#category-edit-title').text('Create modifier');
-    $('.delete-btn').addClass('d-none');
-    isEdit = false;
-  }
-
-  $('.save').click(function() {
-    if(isEdit) {
-      $('.alert').text('Modifier updated successfully');
-    } else {
-      $('.alert').text('Modifier added successfully');
+    function format() {
+        $('input').val('');
+        $('.save').attr('disabled', true);
+        $('.cancel').attr('disabled', true);
+        $('#category-edit-title').text('Create modifier');
+        $('.delete-btn').addClass('d-none');
+        isEdit = false;
     }
-    $('.alert').fadeIn();
-    format();
-    setTimeout(function() {
-      $('.alert').fadeOut();
-    }, 3000);
-  });
 
-  $('body').on('click', '.delete-row', function() {
-    $(this).parent().parent().remove();
-  });
+    $('.save').click(function() {
+        if (isEdit) {
+            $('.alert').text('Modifier updated successfully');
+        } else {
+            $('.alert').text('Modifier added successfully');
+        }
+        $('.alert').fadeIn();
+        format();
+        setTimeout(function() {
+            $('.alert').fadeOut();
+        }, 3000);
+    });
 
-  var htmlStr = `
+    $('body').on('click', '.delete-row', function() {
+        $(this).parent().parent().remove();
+    });
+
+    var htmlStr = `
     <div class="list-item " data-id="15">
       <div>
         <div class="text-muted js-handle">
@@ -62,33 +62,36 @@ $(document).ready(function() {
       </div>
     </div>
     `;
-  
-  $('.add-row').click(function() {
-    $('.list-row').append(htmlStr);
-  });
 
-  $('.delete').click(function() {
-    $('.alert').text('Modifier has been deleted successfully');
-    $('.alert').fadeIn();
-    setTimeout(function() {
-      $('.alert').fadeOut();
-    }, 3000);
-    format();
-  });
+    $('.add-row').click(function() {
+        $('.list-row').append(htmlStr);
+    });
 
-  $('.edit').click(function() {
-    isEdit = true;
-    $('#category-edit-title').text('Edit modifier');
-    $('#name').val('Modifier name');
-    $('.option-name').val('Extra Cheese');
-    $('.option-value').val('1,000');
-    $('.save').attr('disabled', true);
-    $('.cancel').attr('disabled', true);
-    $('.delete-btn').attr('disabled', true);
-    $('.delete-btn').removeClass('d-none');
-  });
+    $('.delete').click(function() {
+        $('.alert').text('Modifier has been deleted successfully');
+        $('.alert').fadeIn();
+        setTimeout(function() {
+            $('.alert').fadeOut();
+        }, 3000);
+        format();
+    });
 
-  $('.leave').click(function() {
-    format();
-  })
+    $('.edit').click(function() {
+        isEdit = true;
+        $('#category-edit-title').text('Edit modifier');
+        $('#name').val('Modifier name');
+        $('.option-name').val('Extra Cheese');
+        $('.option-value').val('1,000');
+        $('.save').attr('disabled', true);
+        $('.cancel').attr('disabled', true);
+        $('.delete-btn').attr('disabled', true);
+        $('.delete-btn').removeClass('d-none');
+        // $('.pl-0').css('visibility', 'hidden');
+        console.log('ok');
+        $('.trush').css('visibility', 'hidden');
+    });
+
+    $('.leave').click(function() {
+        format();
+    })
 });

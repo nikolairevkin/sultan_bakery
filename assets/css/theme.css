@@ -331,7 +331,7 @@ Card
     background: #fff;
     border-width: 0;
     border-radius: 0.25rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 -1px 0px rgba(0, 0, 0, 0.015);
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 -1px 0px rgba(0, 0, 0, 0.015); */
     margin-bottom: 1rem;
 }
 
@@ -3109,7 +3109,7 @@ List
 
 .list-row .list-item,
 .list-bordered .list-item {
-    border-top: 1px solid rgba(135, 150, 165, 0.075);
+    /* border-top: 1px solid rgba(135, 150, 165, 0.075); */
     margin-top: -1px;
 }
 

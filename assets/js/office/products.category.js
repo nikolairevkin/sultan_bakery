@@ -1,56 +1,62 @@
 $(document).ready(function() {
-  
-  var isEdit = false;
 
-  $('.list-item').click(function() {
-    $('.list-item').removeClass('active');
-    $(this).addClass('active');
-  });
+    var isEdit = false;
 
-  $('#checkbox').click(function() {
-    if($(this).prop('checked')) {
-      $('#category-name-container').removeClass('d-none');
-    } else {
-      $('#category-name-container').addClass('d-none');
+    $('.list-item').click(function() {
+        $('.list-item').removeClass('active');
+        $(this).addClass('active');
+    });
+
+    $('#checkbox').click(function() {
+        if ($(this).prop('checked')) {
+            $('#category-name-container').removeClass('d-none');
+        } else {
+            $('#category-name-container').addClass('d-none');
+        }
+    });
+
+    $('.alert').hide();
+    $('.alert').removeClass('d-none');
+
+    $('.category-edit').change(function() {
+        $('.save').removeAttr('disabled');
+        $('.cancel').removeAttr('disabled');
+        $('.delete-btn').removeAttr('disabled');
+    });
+
+    function format() {
+        $('input').val('');
+        $('.save').attr('disabled', true);
+        $('.cancel').attr('disabled', true);
+        $('#category-edit-title').text('Create category');
+        $('.delete-btn').addClass('d-none');
+        isEdit = false;
     }
-  });
 
-  $('.alert').hide();
-  $('.alert').removeClass('d-none');
+    $('.has-sub').click(function() {
+        $('.main-body').css('display', 'none');
+        $('.sub-body').css('display', 'block');
+        $('.back-to-main').css('display', 'block');
+    })
 
-  $('.category-edit').change(function() {
-    $('.save').removeAttr('disabled');
-    $('.cancel').removeAttr('disabled');
-    $('.delete-btn').removeAttr('disabled');
-  });
+    $('.save').click(function() {
+        if (isEdit) {
+            $('.alert').text('Category updated successfully');
+        } else {
+            $('.alert').text('Category added successfully');
+        }
+        $('.alert').fadeIn();
+        format();
+        setTimeout(function() {
+            $('.alert').fadeOut();
+        }, 3000);
+    });
 
-  function format() {
-    $('input').val('');
-    $('.save').attr('disabled', true);
-    $('.cancel').attr('disabled', true);
-    $('#category-edit-title').text('Create category');
-    $('.delete-btn').addClass('d-none');
-    isEdit = false;
-  }
+    $('body').on('click', '.delete-row', function() {
+        $(this).parent().parent().remove();
+    });
 
-  $('.save').click(function() {
-    if(isEdit) {
-      $('.alert').text('Category updated successfully');
-    } else {
-      $('.alert').text('Category added successfully');
-    }
-    $('.alert').fadeIn();
-    format();
-    setTimeout(function() {
-      $('.alert').fadeOut();
-    }, 3000);
-  });
-
-  $('body').on('click', '.delete-row', function() {
-    $(this).parent().parent().remove();
-  });
-
-  var htmlStr = `
+    var htmlStr = `
     <div class="list-item " data-id="15">
       <div>
         <div class="text-muted js-handle">
@@ -75,33 +81,33 @@ $(document).ready(function() {
       </div>
     </div>
     `;
-  
-  $('.add-row').click(function() {
-    $('.list-row').append(htmlStr);
-  });
 
-  $('.delete').click(function() {
-    $('.alert').text('Category has been deleted successfully');
-    $('.alert').fadeIn();
-    setTimeout(function() {
-      $('.alert').fadeOut();
-    }, 3000);
-    format();
-  });
+    $('.add-row').click(function() {
+        $('.list-row').append(htmlStr);
+    });
 
-  $('.edit').click(function() {
-    isEdit = true;
-    $('#category-edit-title').text('Edit category');
-    $('#name').val('Category name');
-    $('#sub-category').val('');
-    $('#checkbox').prop('checked', true);
-    $('.save').attr('disabled', true);
-    $('.cancel').attr('disabled', true);
-    $('.delete-btn').attr('disabled', true);
-    $('.delete-btn').removeClass('d-none');
-  });
+    $('.delete').click(function() {
+        $('.alert').text('Category has been deleted successfully');
+        $('.alert').fadeIn();
+        setTimeout(function() {
+            $('.alert').fadeOut();
+        }, 3000);
+        format();
+    });
 
-  $('.leave').click(function() {
-    format();
-  });
+    $('.edit').click(function() {
+        isEdit = true;
+        $('#category-edit-title').text('Edit category');
+        $('#name').val('Category name');
+        $('#sub-category').val('');
+        $('#checkbox').prop('checked', true);
+        $('.save').attr('disabled', true);
+        $('.cancel').attr('disabled', true);
+        $('.delete-btn').attr('disabled', true);
+        $('.delete-btn').removeClass('d-none');
+    });
+
+    $('.leave').click(function() {
+        format();
+    });
 });
